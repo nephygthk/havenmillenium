@@ -81,7 +81,7 @@ class WithdrawForm(TransactionForm):
 
         if amount > balance:
             raise forms.ValidationError(
-                f'You have {balance} {account.currency} in this account. '
+                f'Insufficient Balance. You have {balance} {account.currency} in this account. '
                 'You can not withdraw more than the account balance'
             )
 
@@ -139,7 +139,7 @@ class CustomerTransactionForm(forms.ModelForm):
 
         if amount > balance:
             raise forms.ValidationError(
-                f'You have {balance} {account.currency} in your account. '
+                f'Insufficient Balance. You have {account.currency}{balance} in your account. '
                 'You can not transfer more than the account balance'
             )
 
