@@ -1,0 +1,81 @@
+{% extends '../account2/base.html' %}
+
+{% load static%}
+
+{% block content %}
+<style>
+    .btn-dark{
+        background-color: black !important;
+        border-color: black;
+    }
+</style>
+
+<section id="register-form">
+    <div class="container py-3">
+      <div class="row justify-content-center align-item-center pt-5">
+        <div class="col-md-7">
+          <div class="card shadow rounded bg-danger text-white">
+            <!-- <center>
+              <img src="{% static 'frontend/img/logo-new.png' %}" alt="" style="width: 300px; padding: 30px 0;">
+            </center> -->
+            
+            <div class="card-body mx-3">
+              <h3 class="mb-3 text-center card-text2">Authorize International Transfer</h3>
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{message}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+            {% endif %}
+              <hr>
+
+              <form action="." method="POST" id="authtransfer-form">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="auth-pin" class="form-label card-text">                              
+                        Enter Authorization Pin
+                    </label>
+                    <input type="text" name="transfer_pin" class="form-control" id="auth-pin" placeholder="example 12345">
+                </div>
+                   
+                <!-- <hr> -->
+                <div class="mb-3">
+                  <!-- <input type="submit" value="Send" class="btn btn-info w-100 fw-bold text-white"> -->
+                    <button type="submit" id="authtransfer-btn" class="btn btn-dark w-100 fw-bold">
+                        <span id="authtransfer-btn-text">Send</span>
+                        <div class="spinner-border text-light spinner-border-sm d-none" role="status" id="authtransfer-btn-spinner">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </button>
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<script>
+    const formVpin = document.querySelector('#authtransfer-form');
+    const loginBtnVpin = document.querySelector('#authtransfer-btn');
+    const btnSpinnerVpin = document.querySelector('#authtransfer-btn-spinner');
+    const btnTextVpin = document.querySelector('#authtransfer-btn-text');
+
+    formVpin.addEventListener('submit', (e)=>{
+        e.preventDefault();
+        console.log('clicked');
+
+        loginBtnVpin.style.backgroundColor = '#e88087';
+        loginBtnVpin.style.borderColor = '#e88087';
+        btnTextVpin.style.display = 'none';
+        btnSpinnerVpin.classList.remove('d-none');
+
+        formVpin.submit();
+    })
+</script>
+
+{% endblock%}

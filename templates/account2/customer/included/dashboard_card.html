@@ -1,0 +1,126 @@
+{% load static %}
+{% load humanize %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 mb-4 mb-md-0">
+            <div class="card-container">
+                <div class="card card-me bg-primary">
+                    <div class="card-front">
+                        <div class="row align-items-center px-2">
+                            <div class="col-9">
+                                <img src="{% static 'assets/images/mylogo/logome1.png' %}" alt="logo" width="90">
+                            </div>
+                            <!-- <div class="col-3">
+                                <img src="../assets/images/mylogo/card-chip.png" alt="logo" width="40">
+                            </div> -->
+                        </div>
+                        <!-- <h4 class="card-title">Card Front</h4> -->
+                        <div class="card-number my-3">{{request.user.get_full_name}}</div>
+                        <div class="row mt-3 card-number-details">
+                            <div class="card-holder col-9">
+                                <p class="m-0 card-detail-header">BALANCE</p>
+                                <p class="m-0 card-detail-small">{{account.currency}}{{account.balance|intcomma}}</p>
+                            </div>
+                            <div class="card-expiry col-3">
+                                <p class="m-0 card-detail-header">Country</p>
+                                <p class="m-0 card-detail-small">{{account.country}}</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="card-back">
+                        <div class="card-image-me">
+                            <img src="{{account.picture.url}}" alt="">
+                             
+                        </div>
+                        <!-- <div class="card-back-details">
+                            <div class="card-strip text-light text-end px-4">587</div>
+                        </div> -->
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4 mb-md-0">
+            <div class="card-container">
+                <div class="card card-me  bg-primary">
+                    <div class="card-front card-nu-3">
+                        <div class="card-image-me">
+                            <img src="{% static 'assets/images/mylogo/linechart-one.jpg' %}" alt="">
+                        </div>
+                        <!-- <div class="row align-items-center px-2">
+                            <div class="col-9">
+                                <img src="../assets/images/mylogo/logome1.png" alt="logo" width="90">
+                            </div>
+                            <div class="col-3">
+                                <img src="../assets/images/mylogo/card-chip.png" alt="logo" width="40">
+                            </div>
+                        </div>
+                        <div class="card-number my-3">1234 5678 9012 3456</div>
+                        <div class="row mt-3 card-number-details">
+                            <div class="card-holder col-9">
+                                <p class="m-0 card-detail-header">CARDHOLDER</p>
+                                <p class="m-0 card-detail-small">Michael Brown</p>
+                            </div>
+                            <div class="card-expiry col-3">
+                                <p class="m-0 card-detail-header">Expiry</p>
+                                <p class="m-0 card-detail-small">08/25</p>
+                            </div>
+                        </div> -->
+                        
+                    </div>
+                    <div class="card-back card-nu-3">
+                        <div class="card-image-me">
+                            <img src="{% static 'assets/images/mylogo/linechat-two.svg' %}" alt="">
+                             <!-- <canvas id="lineChart"></canvas> -->
+                        </div>
+                        <!-- <div class="card-back-details">
+                            <div class="card-strip text-light text-end px-4">587</div>
+                        </div> -->
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card-container">
+                <div class="card card-me  bg-primary">
+                    <div class="card-front card-nu-2">
+                        <div class="row align-items-center px-2">
+                            <div class="col-9">
+                                <img src="{% static 'assets/images/mylogo/logome1.png' %}" alt="logo" width="90">
+                            </div>
+                            <div class="col-3">
+                                <img src="{% static 'assets/images/mylogo/card-chip.png' %}" alt="logo" width="40">
+                            </div>
+                        </div>
+                        <!-- <h4 class="card-title">Card Front</h4> -->
+                        <div class="card-number my-3">1234 5678 9012 3456</div>
+                        <div class="row mt-3 card-number-details">
+                            <div class="card-holder col-9">
+                                <p class="m-0 card-detail-header">CARDHOLDER</p>
+                                <p class="m-0 card-detail-small">{{request.user.get_full_name}}</p>
+                            </div>
+                            <div class="card-expiry col-3">
+                                <p class="m-0 card-detail-header">Expiry</p>
+                                <p class="m-0 card-detail-small">08/30</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="card-back card-nu-2">
+                        <div class="card-image-me">
+                            <!-- <img src="../../media/profile_pictures/ppic.jpg" alt=""> -->
+                        </div>
+                        <div class="card-back-details">
+                            <div class="card-strip text-light text-end px-4">587</div>
+                            <!-- <div class="card-cvc">CVC</div> -->
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

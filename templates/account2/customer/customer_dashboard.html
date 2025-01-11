@@ -1,0 +1,22 @@
+{% extends '../base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+
+    <!-- dashboard flip card start -->
+        {% include './included/dashboard_card.html' %}
+    <!-- dashboard flip card end -->
+
+    <!-- marqueewidget start -->
+        {% include './included/marquee_widgetme.html' %}
+    <!-- marqueewidget end -->
+
+    <!-- marqueewidget start -->
+        {% include './included/graph_big.html' %}
+    <!-- marqueewidget end -->
+
+    <!-- marqueewidget start -->
+        {% include './included/lastseventrns.html' %}
+    <!-- marqueewidget end -->
+{% endblock%}

@@ -1,0 +1,208 @@
+:root {
+  --main-color: #8a0808;
+  --main-white: #fff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.bg-danger {
+  background-color: var(--main-color) !important;
+}
+
+.btn-danger {
+  background-color: var(--main-color) !important;
+  border-color: var(--main-color) !important;
+}
+/* Sidebar styling */
+#sidebar {
+  width: 220px;
+  background-color: var(--main-white);
+  position: absolute;
+  top: 56px; /* Align with navbar height */
+  /* height: calc(100vh - 56px); */
+  height: 900px;
+  transition: transform 0.3s ease;
+  z-index: 1030;
+}
+
+/* Hide sidebar by default on small screens */
+#sidebar.hidden {
+  transform: translateX(-100%);
+}
+
+#sidebar .nav-item {
+  font-size: 16px;
+}
+
+#sidebar .nav-item .nav-link {
+  color: #8a0808;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+#sidebar .nav-item .nav-link.active {
+  background-color: #5719c2;
+  color: var(--main-white);
+}
+#sidebar .nav-item .nav-link:hover {
+  background-color: #5719c2;
+  color: var(--main-white);
+}
+
+/* On large screens, always show sidebar */
+@media (min-width: 992px) {
+  #sidebar.hidden {
+    transform: none; /* No translation, so it's always visible */
+  }
+  .content-area {
+    margin-left: 220px; /* Space for the sidebar */
+  }
+}
+
+/* Custom close button styling */
+.btn-close-custom {
+  background-color: yellow;
+  border: none;
+  width: 1em;
+  height: 1em;
+  opacity: 1;
+}
+.btn-close-custom:hover {
+  background-color: gold;
+}
+
+/* main area start */
+.main_area_top {
+  background-color: var(--main-color);
+}
+
+.main_area_top span {
+  color: #b9adad;
+  /* font-size: 16px; */
+}
+
+/* flip card stage */
+.card-container {
+  margin-top: -30px;
+  perspective: 1000px;
+}
+
+.card-me {
+  /* width: 300px; */
+  height: 180px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+  border-radius: 20px;
+  border: none;
+}
+
+.card-me:hover {
+  transform: rotateY(180deg);
+}
+.card-front {
+  padding: 20px;
+}
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; /* Hides the back when not facing the viewer */
+  /* border: 1px solid #bd261b;  */
+  border: none;
+  border-radius: 10px; /* Rounded corners */
+  /* padding: 20px; */
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+
+  border-radius: 20px;
+}
+
+.card-front {
+  /* background-color: #fff; */
+  background: linear-gradient(#ff796f, #bd261b);
+  box-shadow: 0 4px 8px var(--main-color);
+}
+
+.card-back {
+  /* background-color: #f0f0f0; */
+  background: linear-gradient(#ff796f, #bd261b);
+  box-shadow: 0 4px 8px var(--main-color);
+  transform: rotateY(180deg);
+}
+
+.card-me .card-number {
+  font-size: 20px;
+  text-align: center;
+  color: var(--main-white);
+}
+
+.card-number-details .card-detail-header {
+  font-size: 14px;
+  color: var(--main-white);
+  font-weight: 700;
+}
+
+.card-number-details .card-detail-small {
+  font-size: 13px;
+  color: #e7d2d2;
+}
+
+.card-strip {
+  background-color: #333;
+  height: 30px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.card-cvc {
+  text-align: center;
+}
+
+.card-image-me {
+  width: 100%;
+  height: 100%;
+}
+
+.card-image-me img {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  object-fit: cover;
+  opacity: 0.6.5;
+}
+
+.card-back-details {
+  position: absolute;
+  top: 70px;
+  left: 0;
+  /* background-color: blue; */
+  width: 100%;
+}
+
+.card-nu-2 {
+  background: linear-gradient(#5d70ff, #5719c2) !important;
+  box-shadow: 0 4px 8px #5719c2;
+}
+
+.card-nu-3 {
+  background: linear-gradient(#e6e6e9, #fff) !important;
+  box-shadow: 0 4px 8px #e6e6e9;
+}
+
+/* table */
+.table-condensed {
+  font-size: 12px !important;
+}
+
+.card-text {
+  font-size: 17px;
+}
+
+.card-text2 {
+  font-size: 22px;
+}

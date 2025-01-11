@@ -1,0 +1,49 @@
+{% load custom_filters %}
+{% load tz %}
+
+<div class="main_area_top">
+    <div class="container text-white py-5 px-4">
+        <div class="row">
+            <div class="col-8">
+                <h5>My Dashboard</h5>
+                <p>
+                    <span class="small">Welcome: </span> 
+                    <strong>{{request.user.get_full_name}}</strong>
+                    <span class="small">
+                        Logged User IP: 
+                        {% if request.META.HTTP_X_FORWARDED_FOR %}
+                            {{ request.META.HTTP_X_FORWARDED_FOR|split:","|first }}
+                        {% else %}
+                            {{ request.META.REMOTE_ADDR }}
+                        {% endif %}
+                    </span>
+                </p>
+                <p>
+                    <strong class="text-light">Last Login:</strong>
+                    <span id="last-login">{{request.user.last_login|date:"c"}}</span>
+                    <!-- <span>{{request.user.get_last_login_plus_one_hour}}</span> -->
+                    <!-- <span>{{request.user.get_last_login_local|localtime}}</span> -->
+                    <!-- <span>{% localtime on %} {{request.user.last_login}}{% endlocaltime %}</span> -->
+                </p>
+                    
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Convert the time using JavaScript -->
+<script>
+    // Get the UTC timestamp string from the template
+    const lastLoginElement = document.getElementById('last-login');
+    const utcTimestamp = lastLoginElement.textContent; // e.g., "2024-11-09T14:30:00+00:00"
+
+    // Convert the UTC timestamp to a JavaScript Date object
+    const date = new Date(utcTimestamp);
+
+    // Convert to local time
+    const localDateString = date.toLocaleDateString();
+    const localTimeString = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+    // Optionally, update the HTML with the local date and time
+    lastLoginElement.textContent = `${localTimeString}`;
+</script>

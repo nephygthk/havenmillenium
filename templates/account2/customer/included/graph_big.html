@@ -1,0 +1,148 @@
+{% load humanize %}
+
+<style>
+    .wavy-card{
+        overflow-x: hidden;
+        margin: 0;
+        padding: 0;
+        background-color: rgba(160, 2, 2, 0.8);
+    }
+    .main {
+        width: 100%;
+        height: 100px;
+        background-color: #8a0808;
+        display: flex;
+        /* justify-content: center; */
+        flex-direction: column;
+        color: #fff;
+        padding: 0 20px;
+        font-family: Arial;
+    }
+</style>
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-8 mb-3 mb-md-0">
+            <div class="card shadow-sm">
+                <div class="card-header text-white bg-danger">
+                    <h5 class="card-title mb-0">Transaction History Chart</h5>
+                </div>
+                <div class="card-body">
+                    <!-- Remove width and height attributes to allow responsive resizing -->
+                    <canvas id="salesChart" height="320"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm text-white wavy-card">
+                <div class="main p-3">
+                    <p class="m-0">Balance: {{account.currency}}{{account.balance|intcomma}}</p>
+                    <p class="small text-light m-0" style="font-size: 12px;">Updated: {{request.user.last_login}}</p>
+                </div>
+                <!-- <svg viewBox="0 0 500 200">
+                    <path d="M 0 30 C 150 100 280 0 500 20 L 500 0 L 0 0" fill="#8a0808"></path>
+                </svg> -->
+                <svg viewBox="0 0 500 200">
+                    <path d="M 0 50 C 150 150 300 0 500 80 L 500 0 L 0 0" fill="#8a0808"></path>
+                    <path d="M 0 50 C 150 150 330 -30 500 50 L 500 0 L 0 0" fill="#8a0808" opacity="0.8"></path>
+                   <path d="M 0 50 C 215 150 250 0 500 100 L 500 0 L 0 0" fill="#000" opacity="0.1"></path>
+                </svg>
+                <div class="barchartme">
+                    <div class="chartme-container">
+                        <canvas id="myBarChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Custom Script -->
+<script>
+    // Setup the chart data and configuration
+    const ctx = document.getElementById('salesChart').getContext('2d');
+    const salesChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            datasets: [
+                {
+                    label: 'Debit',
+                    data: [100, 170, 250, 420, 150, 280, 350,140, 280, 330, 180, 800],
+                    backgroundColor: 'rgba(0, 123, 255, 0.2)',
+                    borderColor: 'rgba(0, 123, 255, 0)', // No border
+                    borderWidth: 0,
+                    tension: 0.4,
+                    fill: true
+                },
+                {
+                    label: 'Credit',
+                    data: [90, 140, 280, 330, 180, 260, 380, 170, 250, 420, 150, 280,],
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 0)', // No border
+                    borderWidth: 0,
+                    tension: 0.4,
+                    fill: true
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false, // Ensures chart fills container width
+            plugins: {
+                legend: {
+                    position: 'top'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
+<script>
+    // Data for the bar chart
+    const ctx2 = document.getElementById('myBarChart').getContext('2d');
+    const myBarChart = new Chart(ctx2, {
+        type: 'bar', // Specify the type of chart
+        data: {
+            labels: ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'], // X-axis labels
+            datasets: [{
+                label: 'withdrawer',
+                data: [12, 19, 3, 5, 2, 3], // Y-axis data
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)', // Red
+                    'rgba(54, 162, 235, 0.2)', // Blue
+                    'rgba(255, 206, 86, 0.2)', // Yellow
+                    'rgba(75, 192, 192, 0.2)', // Green
+                    'rgba(153, 102, 255, 0.2)', // Purple
+                    'rgba(255, 159, 64, 0.2)' // Orange
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)', // Red
+                    'rgba(54, 162, 235, 1)', // Blue
+                    'rgba(255, 206, 86, 1)', // Yellow
+                    'rgba(75, 192, 192, 1)', // Green
+                    'rgba(153, 102, 255, 1)', // Purple
+                    'rgba(255, 159, 64, 1)' // Orange
+                ],
+                borderWidth: 1 // Border width for bars
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true // Start Y-axis at zero
+                }
+            },
+            responsive: true,
+            maintainAspectRatio: false // Responsive without maintaining aspect ratio
+        }
+    });
+</script>

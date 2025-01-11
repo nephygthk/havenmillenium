@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <title>Three Cards with Progress Bars</title>
+    <style>
+        body {
+    background-color: #f8f9fa;
+}
+
+.card-container {
+    perspective: 1000px;
+}
+
+.card {
+    width: 300px;
+    height: 200px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+.card:hover {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-front {
+    background-color: #fff;
+}
+
+.card-back {
+    background-color: #f0f0f0;
+    transform: rotateY(180deg);
+}
+
+.card-title, .card-number, .card-holder, .card-expiry, .card-cvc, .card-strip {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.card-strip {
+    background-color: #333;
+    height: 20px;
+}
+
+.progress-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.circular-progress {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: conic-gradient(#4caf50 calc(var(--progress, 50) * 1%), #ddd calc(var(--progress, 50) * 1%));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.circular-progress span {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+    position: absolute;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <!-- First Column with Card and Progress Bars -->
+            <div class="col-md-4 d-flex justify-content-center align-items-center">
+                <div class="card-container">
+                    <div class="card">
+                        <div class="card-front">
+                            <h4 class="card-title">Card 1 Front</h4>
+                            <div class="card-number">1234 5678 9012 3456</div>
+                            <div class="card-holder">CARDHOLDER 1</div>
+                            <div class="card-expiry">MM/YY</div>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-strip"></div>
+                            <div class="card-cvc">CVC</div>
+                            <div class="progress-container">
+                                <div class="circular-progress" style="--progress: 75;">
+                                    <span>75%</span>
+                                </div>
+                                <div class="circular-progress" style="--progress: 50;">
+                                    <span>50%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Second Column with Card -->
+            <div class="col-md-4 d-flex justify-content-center align-items-center">
+                <div class="card-container">
+                    <div class="card">
+                        <div class="card-front">
+                            <h4 class="card-title">Card 2 Front</h4>
+                            <div class="card-number">9876 5432 1098 7654</div>
+                            <div class="card-holder">CARDHOLDER 2</div>
+                            <div class="card-expiry">MM/YY</div>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-strip"></div>
+                            <div class="card-cvc">CVC</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Third Column with Card -->
+            <div class="col-md-4 d-flex justify-content-center align-items-center">
+                <div class="card-container">
+                    <div class="card">
+                        <div class="card-front">
+                            <h4 class="card-title">Card 3 Front</h4>
+                            <div class="card-number">4567 8901 2345 6789</div>
+                            <div class="card-holder">CARDHOLDER 3</div>
+                            <div class="card-expiry">MM/YY</div>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-strip"></div>
+                            <div class="card-cvc">CVC</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

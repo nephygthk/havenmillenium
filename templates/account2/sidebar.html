@@ -1,0 +1,179 @@
+{% load static %}
+
+<style>
+    .btn-warning{
+        background-color: #0d061a !important;
+        border-color: #06030a;
+    }
+</style>
+
+<!-- Main Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-danger shadow p-0">
+    <div class="container-fluid">
+        <!-- Sidebar Toggle Button, visible only on smaller screens -->
+        <button class="btn btn-outline-white d-lg-none me-3" id="sidebarToggle">
+            <i class="fa-solid fa-bars text-white" style="font-size: 25px;"></i>
+            <!-- <i class="bi bi-list"></i> -->
+        </button>
+
+        <!-- Navbar Brand -->
+        <a class="navbar-brand" href="#">
+            <!-- <img src="../assets/images/mylogo/logome1.png" alt="" class="logo" style="width: 50px;"> -->
+            <img src="{% static 'assets/images/mylogo/logo_millienium_short.png' %}" alt="logo" style="width: 40px;" class="d-md-none">
+            <img src="{% static 'assets/images/mylogo/logo_millienium.png' %}" alt="logo" style="width: 120px;" class="d-none d-md-block">
+        </a>
+
+        <!-- Right-aligned content -->
+        <div class="d-flex align-items-center ms-auto">
+            <img src="{{request.user.account.picture.url}}" alt="Profile" class="rounded-circle me-4 d-none d-md-block" width="40" height="40">
+
+            <div id="google_translate_element"></div>
+            
+        </div>
+    </div>
+</nav>
+
+<!-- Sidebar -->
+<div id="sidebar" class="hidden shadow">
+    <div class="d-flex justify-content-end p-2">
+        <!-- Custom Close Button, visible only on smaller screens -->
+        <button type="button" class="btn-close btn-close-custom d-lg-none" id="closeSidebar"></button>
+    </div>
+    <div class="profile_picture px-4">
+        <img src="{{request.user.account.picture.url}}" alt="Profile" class="rounded-circle" width="140" height="140">
+    </div>
+    <hr>
+    
+    <ul class="nav flex-column p-2">
+        <li class="nav-item">
+            
+            <a class="nav-link" href="{% url 'account:customer_dashboard' %}">
+                <i class="fa-solid fa-house me-4"></i><span>Dashboard</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            
+            <a class="nav-link" href="" data-bs-toggle="modal" data-bs-target="#transaferType">
+                <i class="fa-solid fa-money-bill-transfer me-4"></i><span>Make Transfer</span>
+            </a>
+            <!-- <a class="nav-link" href="{% url 'transactions:customer_transfer' %}">
+                <i class="fa-solid fa-money-bill-transfer me-4"></i><span>Make Transfer</span>
+            </a> -->
+        </li>
+        <li class="nav-item">
+            
+            <a class="nav-link" href="{% url 'account:customer_transactions' %}">
+                <i class="fa-regular fa-address-book me-4"></i><span>Statement</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            
+            <a class="nav-link" href="{% url 'account:customer_care' %}">
+                <i class="fa-solid fa-headset me-4"></i><span>Customer Care</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            
+            <a class="nav-link" href="">
+                <i class="fa-solid fa-house me-4"></i><span>User Profile</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            
+            <a class="nav-link" href="{% url 'account:customer_ewallet' %}">
+                <i class="fa-solid fa-wallet me-4"></i><span>E-Wallet</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            
+            <a class="nav-link" href="{% url 'account:customer_ewallet' %}">
+                <i class="fa-solid fa-wallet me-4"></i><span>Credit Card</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            
+            <a class="nav-link" href="{% url 'account:customer_ewallet' %}">
+                <i class="fa-solid fa-wallet me-4"></i><span>Apply For Loan</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            
+            <a class="nav-link" href="{% url 'account:customer_ewallet' %}">
+                <i class="fa-solid fa-wallet me-4"></i><span>Loan Menu</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            
+            <a class="nav-link" href="{% url 'account:customer_settings' %}">
+                <i class="fa-solid fa-gear me-4"></i><span>Settings</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            
+            <a class="mt-4 btn btn-warning w-100 text-white" href="{% url 'account:logout' %}">
+                <span>Logout</span><i class="ms-3 fa-solid fa-arrow-right-from-bracket"></i>
+            </a>
+        </li>
+        
+    </ul>
+    <!-- <a class="mt-4 btn btn-warning w-100 text-white" href="{% url 'account:logout' %}">
+        <span>Logout</span><i class="ms-3 fa-solid fa-arrow-right-from-bracket"></i>
+    </a> -->
+</div>
+
+
+
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#transaferType">
+    Launch demo modal
+  </button> -->
+  
+  <!-- Modal -->
+  <div class="modal fade" id="transaferType" tabindex="-1" aria-labelledby="transaferTypeLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="transaferTypeLabel">Select Transfer Type</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="{% url 'transactions:select_transafer_type' %}" method="POST" id="select-transfer-form">
+            {% csrf_token %}
+            <div class="modal-body">
+                <select class="form-select" aria-label="Default select example" name="location">
+                    <option value="local"><a href="#">Local Transfer</a></option>
+                    <option value="international"><a href="#">International Transfer</a></option>
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" id="select-transfer-btn" class="btn btn-dark w-100 fw-bold">
+                    <span id="select-my-transfer-btn-text">Continue</span>
+                    <div class="spinner-border text-light spinner-border-sm d-none" role="status" id="select-transfer-btn-spinner">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </button>
+                <!-- <button type="submit" class="btn btn-danger w-100 fw-bold">Continue</button> -->
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    const form = document.querySelector('#select-transfer-form');
+    const loginBtn = document.querySelector('#select-transfer-btn');
+    const btnSpinner = document.querySelector('#select-transfer-btn-spinner');
+    const btnText = document.querySelector('#select-my-transfer-btn-text');
+
+    form.addEventListener('submit', (e)=>{
+        e.preventDefault();
+        console.log('clicked');
+
+        loginBtn.style.backgroundColor = '#e88087';
+        loginBtn.style.borderColor = '#e88087';
+        btnText.style.display = 'none';
+        btnSpinner.classList.remove('d-none');
+
+        form.submit();
+    })
+</script>
