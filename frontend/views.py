@@ -15,7 +15,8 @@ from transactions import emailsend
 from codes.forms import CodeForm
 
 class HomeView(TemplateView):
-    template_name = 'frontend2/index.html'
+    template_name = 'frontend2/server_error.html'
+    # template_name = 'frontend2/index.html'
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
@@ -27,7 +28,8 @@ class HomeView(TemplateView):
 
 
 class AboutUsView(TemplateView):
-    template_name = 'frontend/about.html'
+    template_name = 'frontend2/server_error.html'
+    # template_name = 'frontend/about.html'
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
@@ -39,7 +41,8 @@ class AboutUsView(TemplateView):
 
 
 class ContactUsView(TemplateView):
-    template_name = 'frontend/contact.html'
+    template_name = 'frontend2/server_error.html'
+    # template_name = 'frontend/contact.html'
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
@@ -116,7 +119,8 @@ class RegisterUserView(CreateView):
 class LoginUserView(LoginView):
     redirect_authenticated_user = True
     form_class = UserLoginForm
-    template_name = 'frontend2/login.html'
+    template_name = 'frontend2/server_error.html'
+    # template_name = 'frontend2/login.html'
 
     def get_success_url(self):
         return reverse_lazy('account:admin_dashboard')
