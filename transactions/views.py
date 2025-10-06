@@ -99,10 +99,13 @@ class WithdrawMoneyView(TransactionCreateMixin):
         return super().form_valid(form)
 
 
-class TransactionListView(ListView):
+class TransactionListView(LoginRequiredMixin, ListView):
     model = Transaction
     template_name = 'transactions/all_transactions.html'
     context_object_name = 'transactions'
+    paginate_by = 15  # Set number of transactions per page
+    # login_url = '/login/'  # Optional: custom login URL
+    # redirect_field_name = 'next'  # Optional: default is 'next'
 
 
 def delete_transaction(request, pk):

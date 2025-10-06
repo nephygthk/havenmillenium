@@ -209,6 +209,7 @@ class CustomerAllTransactionsView(ListView):
     model = Transaction
     template_name = 'account2/customer/transaction_list.html'
     context_object_name = 'transactions'
+    paginate_by = 15
 
     def get_queryset(self):
         queryset = super().get_queryset().filter(account=self.request.user.account)
