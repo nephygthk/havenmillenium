@@ -103,7 +103,7 @@ class TransactionListView(LoginRequiredMixin, ListView):
     model = Transaction
     template_name = 'transactions/all_transactions.html'
     context_object_name = 'transactions'
-    paginate_by = 15  # Set number of transactions per page
+    paginate_by = 10  # Set number of transactions per page
     # login_url = '/login/'  # Optional: custom login URL
     # redirect_field_name = 'next'  # Optional: default is 'next'
 
